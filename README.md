@@ -1,1 +1,0 @@
-# ComputationalTaskDE2020

@@ -39,11 +39,12 @@ public abstract class ACalculationMethod implements ICalculationMethod {
 
     protected void calculateGrid() {
         for (int pointNumber = 1; pointNumber < getNumberOfPoints(); pointNumber++) {
-            calculatedGrid.addPoint(iterationCalculation(calculatedGrid.getPointList().get(pointNumber - 1)));
+            Double step = (getLastXCoordinate() - getInitialPoint().getX()) / (getNumberOfPoints() - 1);
+            calculatedGrid.addPoint(iterationCalculation(calculatedGrid.getPointList().get(pointNumber - 1), step));
         }
     }
 
-    protected abstract Point iterationCalculation(Point previousPoint);
+    protected abstract Point iterationCalculation(Point previousPoint, Double step);
 
     @Override
     public Grid getResultGrid() {

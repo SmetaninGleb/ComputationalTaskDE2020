@@ -1,6 +1,5 @@
 package CalculationMethods;
 
-import Models.Grid;
 import Models.Point;
 
 public class ImprovedEulerMethod extends ACalculationMethod {
@@ -10,10 +9,9 @@ public class ImprovedEulerMethod extends ACalculationMethod {
     }
 
     @Override
-    protected Point iterationCalculation(Point previousPoint) {
-        Double _step = (getLastXCoordinate() - getInitialPoint().getX()) / getNumberOfPoints();
+    protected Point iterationCalculation(Point previousPoint, Double step) {
         Double _firstCoefficient = getMainFunctionResult(previousPoint);
-        Double _secondCoefficient = getMainFunctionResult(new Point(previousPoint.getX() + _step, previousPoint.getY() + _step * _firstCoefficient));
-        return new Point(previousPoint.getX() + _step, previousPoint.getY() + _step / 2 * (_firstCoefficient + _secondCoefficient));
+        Double _secondCoefficient = getMainFunctionResult(new Point(previousPoint.getX() + step, previousPoint.getY() + step * _firstCoefficient));
+        return new Point(previousPoint.getX() + step, previousPoint.getY() + step / 2 * (_firstCoefficient + _secondCoefficient));
     }
 }

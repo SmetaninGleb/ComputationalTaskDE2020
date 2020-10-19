@@ -1,6 +1,5 @@
 package CalculationMethods;
 
-import Models.Grid;
 import Models.Point;
 
 public class AnalyticalMethod extends ACalculationMethod {
@@ -18,8 +17,7 @@ public class AnalyticalMethod extends ACalculationMethod {
     }
 
     @Override
-    protected Point iterationCalculation(Point previousPoint) {
-        Double _step = (getLastXCoordinate() - getInitialPoint().getX()) / getNumberOfPoints();
-        return new Point(previousPoint.getX() + _step, getMainFunctionResult(new Point(previousPoint.getX() + _step, previousPoint.getY())));
+    protected Point iterationCalculation(Point previousPoint, Double step) {
+        return new Point(previousPoint.getX() + step, getMainFunctionResult(new Point(previousPoint.getX() + step, previousPoint.getY())));
     }
 }

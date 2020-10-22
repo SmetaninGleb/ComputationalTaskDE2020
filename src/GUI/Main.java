@@ -25,6 +25,7 @@ public class Main extends Application {
         CalculationController calculationController = new CalculationController();
         mainInterfaceController.setCalculationController(calculationController);
         mainInterfaceController.rebuildTab1Charts();
+        mainInterfaceController.rebuildTab2Charts();
         primaryStage.setTitle("Computational Task");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

@@ -31,12 +31,10 @@ public class GTECalculator implements IErrorCalculator {
     private void calculateError() {
         ArrayList<Point> _exactList = exactSolution.getPointList();
         ArrayList<Point> _methodList = solutionByMethod.getPointList();
-        for (int _exactPointNumber = 0; _exactPointNumber < _exactList.size(); _exactPointNumber++) {
-            for (int _methodPointNumber = 0; _methodPointNumber < _methodList.size(); _methodPointNumber++) {
-                if (_exactList.get(_exactPointNumber).getX().equals(_methodList.get(_methodPointNumber).getX())) {
-                    errorGrid.addPoint(new Point(_exactList.get(_exactPointNumber).getX(),
-                            abs(_exactList.get(_exactPointNumber).getY() - _methodList.get(_methodPointNumber).getY())));
-                }
+        for (int _pointNumber = 0; _pointNumber < _exactList.size(); _pointNumber++) {
+            if (_exactList.get(_pointNumber).getX().equals(_methodList.get(_pointNumber).getX())) {
+                errorGrid.addPoint(new Point(_exactList.get(_pointNumber).getX(),
+                        abs(_exactList.get(_pointNumber).getY() - _methodList.get(_pointNumber).getY())));
             }
         }
     }

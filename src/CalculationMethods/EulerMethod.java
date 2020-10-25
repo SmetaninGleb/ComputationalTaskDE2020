@@ -9,7 +9,8 @@ public class EulerMethod extends ACalculationMethod {
     }
 
     @Override
-    protected Point iterationCalculation(Point previousPoint, Double step) {
+    public Point iterationCalculation(Point previousPoint) {
+        Double step = (getLastXCoordinate() - getInitialPoint().getX()) / (getNumberOfPoints() - 1);
         return new Point(previousPoint.getX() + step, previousPoint.getY() + step * getMainFunctionResult(previousPoint));
     }
 }

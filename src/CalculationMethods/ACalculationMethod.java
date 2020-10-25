@@ -11,11 +11,7 @@ public abstract class ACalculationMethod implements ICalculationMethod {
     protected Grid calculatedGrid;
 
     public ACalculationMethod(Point initialPoint, Double lastXCoordinate, Integer numberOfPoints) {
-        this.initialPoint = initialPoint;
-        this.lastXCoordinate = lastXCoordinate;
-        this.numberOfPoints = numberOfPoints;
-        this.calculatedGrid = new Grid();
-        calculatedGrid.addPoint(this.initialPoint);
+        updateInitialValues(initialPoint, lastXCoordinate, numberOfPoints);
     }
 
     public Point getInitialPoint() {
@@ -39,12 +35,11 @@ public abstract class ACalculationMethod implements ICalculationMethod {
 
     protected void calculateGrid() {
         for (int pointNumber = 1; pointNumber < getNumberOfPoints(); pointNumber++) {
-            Double step = (getLastXCoordinate() - getInitialPoint().getX()) / (getNumberOfPoints() - 1);
-            calculatedGrid.addPoint(iterationCalculation(calculatedGrid.getPointList().get(pointNumber - 1), step));
+            calculatedGrid.addPoint(iterationCalculation(calculatedGrid.getPointList().get(pointNumber - 1)));
         }
     }
 
-    protected abstract Point iterationCalculation(Point previousPoint, Double step);
+    public abstract Point iterationCalculation(Point previousPoint);
 
     @Override
     public Grid getResultGrid() {
@@ -60,5 +55,7 @@ public abstract class ACalculationMethod implements ICalculationMethod {
         this.initialPoint = initialPoint;
         this.lastXCoordinate = lastXCoordinate;
         this.numberOfPoints = numberOfPoints;
+        this.calculatedGrid = new Grid();
+        calculatedGrid.addPoint(this.initialPoint);
     }
 }

@@ -9,7 +9,8 @@ public class RungeKuttaMethod extends ACalculationMethod {
     }
 
     @Override
-    protected Point iterationCalculation(Point previousPoint, Double step) {
+    public Point iterationCalculation(Point previousPoint) {
+        Double step = (getLastXCoordinate() - getInitialPoint().getX()) / (getNumberOfPoints() - 1);
         Double _coefficient1 = getMainFunctionResult(previousPoint);
         Double _coefficient2 = getMainFunctionResult(new Point(previousPoint.getX() + step / 2, previousPoint.getY() + step / 2 * _coefficient1));
         Double _coefficient3 = getMainFunctionResult(new Point(previousPoint.getX() + step / 2, previousPoint.getY() + step / 2 * _coefficient2));

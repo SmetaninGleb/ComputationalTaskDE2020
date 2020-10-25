@@ -9,7 +9,8 @@ public class ImprovedEulerMethod extends ACalculationMethod {
     }
 
     @Override
-    protected Point iterationCalculation(Point previousPoint, Double step) {
+    public Point iterationCalculation(Point previousPoint) {
+        Double step = (getLastXCoordinate() - getInitialPoint().getX()) / (getNumberOfPoints() - 1);
         Double _firstCoefficient = getMainFunctionResult(previousPoint);
         Double _secondCoefficient = getMainFunctionResult(new Point(previousPoint.getX() + step, previousPoint.getY() + step * _firstCoefficient));
         return new Point(previousPoint.getX() + step, previousPoint.getY() + step / 2 * (_firstCoefficient + _secondCoefficient));
